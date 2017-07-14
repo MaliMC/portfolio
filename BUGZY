@@ -1,0 +1,93 @@
+  /*
+ * Robotics with the BOE Shield - DisplayWhiskerStates
+ * Display left and right whisker states in Serial Monitor.
+ * 1 indicates not touching; 0 indicates touching.
+ * Left number corresponds to the left whisker, assuming that
+ * the whiskers are the "front" of the car.
+ */
+ #define NOTE_CS4 277
+ #include <Servo.h>
+Servo servoLeft;
+Servo servoRight;
+int speakerPin = 4;
+int ledPin = 11;                              // LED connected to digital pin 13
+void setup()                                 // Built-in initialization block
+{
+ 
+  pinMode(7, INPUT);                         // Set right whisker pin to input
+  pinMode(5, INPUT); 
+  pinMode(speakerPin, OUTPUT);
+  // Set left whisker pin to input  
+  pinMode(ledPin, OUTPUT);      // sets the digital pin as output
+  Serial.begin(9600);   
+    // put your setup code here, to run once:
+  servoLeft.attach(13);
+  servoRight.attach(12);
+   // put your setup code here, to run once:
+
+  // Set data rate to 9600 bps (i.e. 
+                                             // the reason why the numbers are so fast.
+}  
+ 
+void loop()                                  // Main loop auto-repeats
+{                                            
+  byte wLeft = digitalRead(5);               // Copy left result to wLeft  
+  byte wRight = digitalRead(7);              // Copy right result to wRight
+
+  Serial.print(wLeft);                       // Display left whisker state
+  Serial.println(wRight);   
+  servoLeft.writeMicroseconds(1700); //left wheel, robot is going clockwise
+  servoRight.writeMicroseconds(1300);
+  digitalWrite(ledPin, LOW);
+ 
+  if ((wLeft ==0) && (wRight == 0)){
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+    digitalWrite(ledPin, LOW);
+    delay(20);
+    servoLeft.writeMicroseconds(1300); //left wheel, robot is going clockwise
+    servoRight.writeMicroseconds(1700);
+    delay(1500);  
+    servoLeft.writeMicroseconds(1300);
+    servoRight.writeMicroseconds(1500);
+    delay(650);
+  }
+  else if (wRight == 0){
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+    digitalWrite(ledPin, LOW);
+    delay(20);
+    servoLeft.writeMicroseconds(1300); //left wheel, robot is going clockwise
+    servoRight.writeMicroseconds(1500);
+    delay(500);
+  }
+  else if (wLeft == 0){
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+    digitalWrite(ledPin, LOW);
+    delay(20);
+    servoLeft.writeMicroseconds(1500); //left wheel, robot is going clockwise
+    servoRight.writeMicroseconds(1700);
+    delay(500);
+  }
+  else if ((wLeft ==0) && (wRight == 0)){
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+    digitalWrite(ledPin, LOW);
+    delay(20);
+    servoLeft.writeMicroseconds(1300); //left wheel, robot is going clockwise
+    servoRight.writeMicroseconds(1700);
+    delay(10000);
+  }
+    else {
+    servoLeft.writeMicroseconds(1700); //left wheel, robot is going clockwise
+    servoRight.writeMicroseconds(1300);
+    digitalWrite(ledPin, LOW);
+  delay(250);
+    }
+    
+
+  // Display right whisker state
+
+  // delay(50);                                 // Pause for 50 ms
+}
