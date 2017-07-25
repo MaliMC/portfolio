@@ -1,0 +1,49 @@
+import csv
+import string
+
+# Open the CSV File and read it in.
+f = open('countries.csv')
+data = f.read()
+
+# Split the data into an array of countries.
+elementsList = data.split('\n')
+
+# print length of the list
+length = len(elementsList)
+# print the first element
+#print(elementsList)
+print(elementsList[0])
+
+# print the last element
+print(elementsList[int(len(elementsList)/2)])
+# print all the elements
+
+
+# Start your search algorithm here.
+question1 = input("Is your name between these two numbers(y/n): ")
+if question1 == "n":
+        #print(elementsList[0])
+        #print(elementsList[int(len(elementsList)//4)])
+        print(elementsList[int(len(elementsList)/2)])
+        print(elementsList[-1:])
+
+
+if question1 == "y":
+        #print(elementsList[0])
+        #print(elementsList[int(len(elementsList)//4)])
+        print(elementsList[0])
+        print(elementsList[int(len(elementsList)//4)])
+        question2 = input("Is your name between these two numbers(y/n): ")
+        if question2 == "n":
+            print(elementsList[int(len(elementsList)//4)])
+            print(elementsList[int(len(elementsList)/2)])
+            question3 = input("Is your name between these two numbers(y/n): ")
+            if question3 == "y":
+                print(elementsList[int(len(elementsList)//8)])
+                print(elementsList[11])
+                question4 = input("Is your name between these two numbers(y/n): ")
+                if question4 == "y":
+                    
+        if question2 =="y":
+            print(elementsList[int(len(elementsList)//4)])
+            print(elementsList[int(len(elementsList)/2)])
