@@ -1,0 +1,43 @@
+import csv
+import string
+
+# Open the CSV File and read it in.
+f = open('countries.csv')
+data = f.read()
+
+# Split the data into an array of countries.
+elementsList = data.split('\n')
+
+#prubt kength of the list
+length = len(elementsList)
+#print the first element
+print(elementsList[0])
+
+#print the last element
+print(elementsList[len(elementsList)-1])
+#print all the elements
+print(elementsList)
+
+#Start your search algoritm here. 
+selectedCountry = input("What country are you looking for????")
+beginingIndex = 0
+endingIndex = len(elementsList)
+
+index = int((beginningIndex + endingIndex)/2)
+
+whilr elementsList[index] != selectedCountry:
+  #print(index)
+  print("begining" + str(begiiningIndex) + "ending: " + str(endingIndex) +"index" + str(index))
+  if elementsList[index] < selectedCountry:
+    beginningIndex = index
+    endingIndex = endingIndex
+  elif elemntsList[index] > selectedCountry:
+    begginigIndex = beginnigIndex
+    endingIndex = index
+   else:
+     print("Yay you found the country:" + selectedCountry + "at index" +str(index))
+     break
+   index = int(beginningIndex + endingIndex)/2)
+print("Yay you found the country:" + selectedCountry + "at index" + str(index))
+
+print("Done.")
